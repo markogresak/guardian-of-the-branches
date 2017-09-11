@@ -1,0 +1,126 @@
+base_protection_config:
+  required_status_checks:
+    strict: true
+    contexts:
+      - "ci/circleci: build"
+  required_pull_request_reviews:
+    dismissal_restrictions:
+      users:
+        - "octocat"
+      teams:
+        - "justice-league"
+    dismiss_stale_reviews: true
+    require_code_owner_reviews: true
+  enforce_admins: true
+  restrictions:
+    users:
+      - "octocat"
+    teams:
+      - "justice-league"
+
+repositories:
+  - blank-repo
+
+  - repo-without-branches:
+
+  - repo-with-empty-branches:
+    branches:
+
+  - basic-repo:
+    branches:
+      - branch1
+      - branch2
+      - branch3
+
+  - repo-with-empty-branch-config:
+    branches:
+      - branch1:
+      - branch2
+      - branch3
+
+  - repo-with-branch-name-override:
+    branches:
+      - branch1:
+        name: master
+      - branch2
+      - branch3
+
+  - repo-with-branch-regex-override:
+    branches:
+      - branch1:
+        regex: /release\/.+/
+      - branch2
+      - branch3
+
+  - repo-with-branch-protection_config-override:
+    branches:
+      - branch-overriding-required_status_checks-strict:
+        protection_config:
+          required_status_checks:
+            strict: false
+      - branch-overriding-required_status_checks-contexts:
+        protection_config:
+          required_status_checks:
+            contexts:
+              - "ci/circleci: test"
+              - "ci/circleci: build"
+      - branch-overriding-required_pull_request_reviews-whole-dismissal_restrictions:
+        protection_config:
+          required_pull_request_reviews:
+            dismissal_restrictions:
+              users:
+                - "user1"
+                - "user2"
+                - "user3"
+              teams:
+                - "team1"
+                - "team2"
+      - branch-overriding-required_pull_request_reviews-dismissal_restrictions-users:
+        protection_config:
+          required_pull_request_reviews:
+            dismissal_restrictions:
+              users:
+                - "user11"
+                - "user12"
+                - "user13"
+      - branch-overriding-required_pull_request_reviews-dismissal_restrictions-teams:
+        protection_config:
+          required_pull_request_reviews:
+            dismissal_restrictions:
+              teams:
+                - "team11"
+                - "team12"
+      - branch-overriding-required_pull_request_reviews-dismiss_stale_reviews:
+        protection_config:
+          required_pull_request_reviews:
+            dismiss_stale_reviews: false
+      - branch-overriding-required_pull_request_reviews-require_code_owner_reviews:
+        protection_config:
+          required_pull_request_reviews:
+            require_code_owner_reviews: false
+      - branch-overriding-enforce_admins:
+        protection_config:
+          enforce_admins: false
+      - branch-overriding-whole-restrictions:
+        protection_config:
+          restrictions:
+            users:
+              - "user11"
+              - "user21"
+              - "user31"
+            teams:
+              - "team11"
+              - "team21"
+      - branch-overriding-restrictions-users:
+        protection_config:
+          restrictions:
+            users:
+              - "user21"
+              - "user22"
+              - "user23"
+      - branch-overriding-restrictions-teams:
+        protection_config:
+          restrictions:
+            teams:
+              - "team21"
+              - "team22"

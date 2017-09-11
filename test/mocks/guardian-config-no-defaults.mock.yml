@@ -1,0 +1,4 @@
+repositories:
+  - basic-repo:
+    branches:
+      - branch1

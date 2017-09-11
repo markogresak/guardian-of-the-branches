@@ -1,0 +1,9 @@
+base_protection_config:
+  required_pull_request_reviews:
+    dismiss_stale_reviews: true
+
+repositories:
+  - testing-branch-guardian:
+    branches:
+      - release:
+        regex: /release\/.+/
